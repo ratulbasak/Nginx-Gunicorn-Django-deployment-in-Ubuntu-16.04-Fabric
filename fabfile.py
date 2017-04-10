@@ -23,26 +23,26 @@ class FabricException(Exception):
     pass
 
 def dev():
-    print "Connecting to Finwallet"
+    print "Connecting to AWS Server"
 
     env.setup = True
-    env.user = 'ubuntu'
+    env.user = 'ubuntu'     #server username
     env.ubuntu_version = '16.04'
 
     env.use_ssh_config = True
     env.shell = "/bin/bash -l -i -c"
-    env.password = 'ubuntu'
-    #env.key_filename = abspath('alemhealthhub.pem')
+    env.password = 'your machines password'
+    #env.key_filename = abspath('your aws instance credentials .pem')
     env.abort_exception = FabricException
 
     env.hosts = [
-        '192.168.2.156'
+        'ip_address_of_server'
     ]
 
     env.graceful = True
     env.is_grunt = True
     env.home = '/home/%s' %(env.user)
-    env.project = 'finwallet'
+    env.project = 'your_app_name'
 
     #local config file path
     env.nginx_config = abspath('devops/myproject')
@@ -74,8 +74,6 @@ def install():
     config_gunicorn()
     install_nginx()
     nginx_config()
-    #install_django_app()
-    #run_django_app()
     return
 
 def update():
@@ -93,7 +91,7 @@ def install_python_dependency():
     install python dependency packages
     """
     print "Installing python dependency packages"
-    """
+    
     sudo(
         'apt-get -y install '
         'python-setuptools libmysqlclient-dev '
@@ -113,7 +111,7 @@ def install_python_dependency():
     sudo('apt-get -y install libcurl4-gnutls-dev librtmp-dev')
     sudo('apt-get install -y libjpeg-turbo8-dev')
     sudo('apt-get install -y libjpeg62-dev')
-    """
+    
 
 def install_pip():
     update()
@@ -175,4 +173,7 @@ def deploy():
         run('source %s; ./manage.py migrate' % env.activate)
         #run('source %s; gunicorn --bind %s %s.wsgi:application' % (env.activate, env.app_sock, env.project))
     sudo("systemctl restart gunicorn.service")
-        #run('python %s/manage.py runserver %s' % (env.app_path,env.app_sock))
+    
+########################################################################
+#--------------------------End of fabric file--------------------------#
+########################################################################
