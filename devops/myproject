@@ -1,10 +1,10 @@
 server {
     listen 80;
-    server_name 192.168.0.106;
+    server_name server_ip_address;
 
     location = /favicon.ico { access_log off; log_not_found off; }
     location /static/ {
-        root /home/ubuntu/finwallet;
+        root app_root_dir_path;
     }
 
     location / {
