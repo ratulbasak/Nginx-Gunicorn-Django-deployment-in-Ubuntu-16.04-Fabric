@@ -22,15 +22,16 @@ Installing fabric via apt:
                       $ sudo apt-get install fabric
 Fabric is installed in the system. Now user can create a python file named fabfile.py. In the fab file, firstly user have to import fabric modules which will help executing remote shell commands and functionality.
 
-from fabric.api import *
-from fabric.operations import *
-from fabric.contrib import django
-from fabric.contrib.project import rsync_project
-from fabric.contrib.console import confirm
-from fabric.contrib.files import exists
-from fabric.colors import yellow, green, blue, red
-from fabric.operations import _prefix_commands, _prefix_env_vars
-from contextlib import contextmanager as _contextmanager
+    from fabric.api import *
+    from fabric.operations import *
+    from fabric.contrib import django
+    from fabric.contrib.project import rsync_project
+    from fabric.contrib.console import confirm
+    from fabric.contrib.files import exists
+    from fabric.colors import yellow, green, blue, red
+    from fabric.operations import _prefix_commands, _prefix_env_vars
+    from contextlib import contextmanager as _contextmanager
+
 Now in the dev() function, user should be the username of the server e.g 'ubuntu', ubuntu_version should be the version number of the server e.g '16.04', password and hosts should be the user password and host's ip address of the server.
 
 env.home = home directory path of the user, e.g "/home/ubuntu"
