@@ -88,21 +88,21 @@ sudo vim /etc/systemd/system/gunicorn.service
 
 User should copy and paste the following:
 
-[Unit]
-Description=gunicorn daemon
-After=network.target
-
-
-[Service]
-User=ubuntu
-Group=www-data
-WorkingDirectory=/home/ubuntu/finwallet
-ExecStart=/home/ubuntu/virtual-env/finwallet/bin/gunicorn --workers 3 --bind unix:/home/ubuntu/finwallet/finwallet.sock finwallet.wsgi:application
-
-
-[Install]
-WantedBy=multi-user.target
-Start with the [Unit] section, which is used to specify metadata and dependencies. User'll put a description of the service here and tell the init system to only start this after the networking target has been reached.
+    [Unit]
+    Description=gunicorn daemon
+    After=network.target
+    
+    
+    [Service]
+    User=ubuntu
+    Group=www-data
+    WorkingDirectory=/home/ubuntu/finwallet
+    ExecStart=/home/ubuntu/virtual-env/finwallet/bin/gunicorn --workers 3 --bind unix:/home/ubuntu/finwallet/finwallet.sock finwallet.wsgi:application
+    
+    
+    [Install]
+    WantedBy=multi-user.target
+    Start with the [Unit] section, which is used to specify metadata and dependencies. User'll put a description of the service here and tell the init system to only start this after the networking target has been reached.
 
 In the [Service] section, specify the user and group that the user wants to process to run under. User should give regular user account ownership of the process since it owns all of the relevant files and should give group ownership to the www-data group so that Nginx can communicate easily with Gunicorn.
 
