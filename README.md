@@ -129,5 +129,7 @@ server {
         include proxy_params;
         proxy_pass http://unix:/home/ubuntu/finwallet/finwallet.sock;
     }
-}
+  }
+
+
 In the deploy() function, first go to the app directory and create a static folder and collect all the static files using ./manage.py collectstatic. Now using ./manage.py makemigrations and ./manage.py migrate command user can migrate and apply the database schema to the application. At last the gunicorn service should restart...
