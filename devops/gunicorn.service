@@ -1,0 +1,19 @@
+[Unit]
+Description=gunicorn daemon
+After=network.target
+
+
+[Service]
+User=ubuntu
+Group=www-data
+WorkingDirectory=/home/ubuntu/finwallet
+ExecStart=/home/ubuntu/virtual-env/finwallet/bin/gunicorn --workers 3 --bind unix:/home/ubuntu/finwallet/finwallet.sock finwallet.wsgi:application
+#ExecStart=/home/ubuntu/.local/bin/gunicorn --pid /run/gunicorn/pid   \
+#          --bind unix:/run/gunicorn/socket my_test_practise.wsgi
+
+#ExecReload=/bin/kill -s HUP $MAINPID
+#ExecStop=/bin/kill -s TERM $MAINPID
+#PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
